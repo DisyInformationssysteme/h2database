@@ -861,11 +861,11 @@ public class Build extends BuildBase {
         // MVStore
         jarMVStore();
         String pom = new String(readFile(new File("src/installer/pom-mvstore-template.xml")));
-        pom = replaceAll(pom, "@version@", "1.0-SNAPSHOT");
+        pom = replaceAll(pom, "@version@", "1.4.199-disy-1");
         writeFile(new File("bin/pom.xml"), pom.getBytes());
         execScript("mvn", args(
                 "install:install-file",
-                "-Dversion=1.0-SNAPSHOT",
+                "-Dversion=1.4.199-disy-1",
                 "-Dfile=bin/h2-mvstore" + getJarSuffix(),
                 "-Dpackaging=jar",
                 "-DpomFile=bin/pom.xml",
@@ -874,11 +874,11 @@ public class Build extends BuildBase {
         // database
         jar();
         pom = new String(readFile(new File("src/installer/pom-template.xml")));
-        pom = replaceAll(pom, "@version@", "1.0-SNAPSHOT");
+        pom = replaceAll(pom, "@version@", "1.4.199-disy-1");
         writeFile(new File("bin/pom.xml"), pom.getBytes());
         execScript("mvn", args(
                 "install:install-file",
-                "-Dversion=1.0-SNAPSHOT",
+                "-Dversion=1.4.199-disy-1",
                 "-Dfile=bin/h2" + getJarSuffix(),
                 "-Dpackaging=jar",
                 "-DpomFile=bin/pom.xml",
