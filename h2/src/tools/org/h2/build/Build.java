@@ -187,7 +187,7 @@ public class Build extends BuildBase {
             File.pathSeparator + "ext/h2mig_pagestore_addon.jar" +
             File.pathSeparator + "ext/org.osgi.core-4.2.0.jar" +
             File.pathSeparator + "ext/org.osgi.enterprise-4.2.0.jar" +
-            File.pathSeparator + "ext/jts-core-1.15.0.jar" +
+            File.pathSeparator + "ext/jts-core-1.17.0.jar" +
             File.pathSeparator + "ext/slf4j-api-1.6.0.jar" +
             File.pathSeparator + "ext/slf4j-nop-1.6.0.jar" +
             File.pathSeparator + javaToolsJar;
@@ -268,7 +268,7 @@ public class Build extends BuildBase {
                 File.pathSeparator + "ext/slf4j-api-1.6.0.jar" +
                 File.pathSeparator + "ext/org.osgi.core-4.2.0.jar" +
                 File.pathSeparator + "ext/org.osgi.enterprise-4.2.0.jar" +
-                File.pathSeparator + "ext/jts-core-1.15.0.jar" +
+                File.pathSeparator + "ext/jts-core-1.17.0.jar" +
                 File.pathSeparator + "ext/asm-7.0.jar" +
                 File.pathSeparator + javaToolsJar;
         FileList files;
@@ -378,9 +378,9 @@ public class Build extends BuildBase {
         downloadOrVerify("ext/org.osgi.enterprise-4.2.0.jar",
                 "org/osgi", "org.osgi.enterprise", "4.2.0",
                 "8634dcb0fc62196e820ed0f1062993c377f74972", offline);
-        downloadOrVerify("ext/jts-core-1.15.0.jar",
-                "org/locationtech/jts", "jts-core", "1.15.0",
-                "705981b7e25d05a76a3654e597dab6ba423eb79e", offline);
+        downloadOrVerify("ext/jts-core-1.17.0.jar",
+                "org/locationtech/jts", "jts-core", "1.17.0",
+                "7e1973b5babdd98734b1ab903fc1155714402eec", offline);
         downloadOrVerify("ext/junit-4.12.jar",
                 "junit", "junit", "4.12",
                 "2973d150c0dc1fefe998f834810d68f278ea58ec", offline);
@@ -640,7 +640,7 @@ public class Build extends BuildBase {
                 "ext/lucene-core-5.5.5.jar" +
                 File.pathSeparator + "ext/lucene-analyzers-common-5.5.5.jar" +
                 File.pathSeparator + "ext/lucene-queryparser-5.5.5.jar" +
-                File.pathSeparator + "ext/jts-core-1.15.0.jar",
+                File.pathSeparator + "ext/jts-core-1.17.0.jar",
                 "-docletpath", "bin" + File.pathSeparator + "temp",
                 "-doclet", "org.h2.build.doclet.Doclet");
         copy("docs/javadoc", files("src/docsrc/javadoc"), "src/docsrc/javadoc");
@@ -670,7 +670,7 @@ public class Build extends BuildBase {
                 File.pathSeparator + "ext/lucene-queryparser-5.5.5.jar" +
                 File.pathSeparator + "ext/org.osgi.core-4.2.0.jar" +
                 File.pathSeparator + "ext/org.osgi.enterprise-4.2.0.jar" +
-                File.pathSeparator + "ext/jts-core-1.15.0.jar" +
+                File.pathSeparator + "ext/jts-core-1.17.0.jar" +
                 File.pathSeparator + "ext/asm-7.0.jar" +
                 File.pathSeparator + "ext/junit-4.12.jar",
                 "-subpackages", "org.h2");
@@ -688,7 +688,7 @@ public class Build extends BuildBase {
                 File.pathSeparator + "ext/lucene-queryparser-5.5.5.jar" +
                 File.pathSeparator + "ext/org.osgi.core-4.2.0.jar" +
                 File.pathSeparator + "ext/org.osgi.enterprise-4.2.0.jar" +
-                File.pathSeparator + "ext/jts-core-1.15.0.jar",
+                File.pathSeparator + "ext/jts-core-1.17.0.jar",
                 "-subpackages", "org.h2.mvstore",
                 "-exclude", "org.h2.mvstore.db");
 
@@ -705,7 +705,7 @@ public class Build extends BuildBase {
                 File.pathSeparator + "ext/lucene-queryparser-5.5.5.jar" +
                 File.pathSeparator + "ext/org.osgi.core-4.2.0.jar" +
                 File.pathSeparator + "ext/org.osgi.enterprise-4.2.0.jar" +
-                File.pathSeparator + "ext/jts-core-1.15.0.jar" +
+                File.pathSeparator + "ext/jts-core-1.17.0.jar" +
                 File.pathSeparator + "ext/asm-7.0.jar" +
                 File.pathSeparator + "ext/junit-4.12.jar",
                 "-subpackages", "org.h2",
@@ -861,11 +861,11 @@ public class Build extends BuildBase {
         // MVStore
         jarMVStore();
         String pom = new String(readFile(new File("src/installer/pom-mvstore-template.xml")));
-        pom = replaceAll(pom, "@version@", "1.4.199-disy-3");
+        pom = replaceAll(pom, "@version@", "1.4.199-disy-4");
         writeFile(new File("bin/pom.xml"), pom.getBytes());
         execScript("mvn", args(
                 "install:install-file",
-                "-Dversion=1.4.199-disy-3",
+                "-Dversion=1.4.199-disy-4",
                 "-Dfile=bin/h2-mvstore" + getJarSuffix(),
                 "-Dpackaging=jar",
                 "-DpomFile=bin/pom.xml",
@@ -874,11 +874,11 @@ public class Build extends BuildBase {
         // database
         jar();
         pom = new String(readFile(new File("src/installer/pom-template.xml")));
-        pom = replaceAll(pom, "@version@", "1.4.199-disy-3");
+        pom = replaceAll(pom, "@version@", "1.4.199-disy-4");
         writeFile(new File("bin/pom.xml"), pom.getBytes());
         execScript("mvn", args(
                 "install:install-file",
-                "-Dversion=1.4.199-disy-3",
+                "-Dversion=1.4.199-disy-4",
                 "-Dfile=bin/h2" + getJarSuffix(),
                 "-Dpackaging=jar",
                 "-DpomFile=bin/pom.xml",
@@ -909,7 +909,7 @@ public class Build extends BuildBase {
                     "ext/lucene-core-5.5.5.jar" +
                     File.pathSeparator + "ext/lucene-analyzers-common-5.5.5.jar" +
                     File.pathSeparator + "ext/lucene-queryparser-5.5.5.jar" +
-                    File.pathSeparator + "ext/jts-core-1.15.0.jar",
+                    File.pathSeparator + "ext/jts-core-1.17.0.jar",
                     "-docletpath", "bin" + File.pathSeparator + "temp",
                     "-doclet", "org.h2.build.doclet.ResourceDoclet");
         }
@@ -966,7 +966,7 @@ public class Build extends BuildBase {
                 File.pathSeparator + "ext/h2mig_pagestore_addon.jar" +
                 File.pathSeparator + "ext/org.osgi.core-4.2.0.jar" +
                 File.pathSeparator + "ext/org.osgi.enterprise-4.2.0.jar" +
-                File.pathSeparator + "ext/jts-core-1.15.0.jar" +
+                File.pathSeparator + "ext/jts-core-1.17.0.jar" +
                 File.pathSeparator + "ext/slf4j-api-1.6.0.jar" +
                 File.pathSeparator + "ext/slf4j-nop-1.6.0.jar" +
                 File.pathSeparator + "ext/asm-7.0.jar" +
